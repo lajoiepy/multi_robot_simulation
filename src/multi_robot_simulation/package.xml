@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>multi_robot_simulation</name>
+  <version>0.0.0</version>
+  <description>Simple Multi-Robot Simulation with mvsim</description>
+  <maintainer email="lajoie.py@gmail.com">lajoiepy</maintainer>
+  <license>MIT</license>
+
+  <build_depend>mvsim</build_depend>
+  <exec_depend>mvsim</exec_depend>
+
+  <build_depend>nav2_bringup</build_depend>
+  <exec_depend>nav2_bringup</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

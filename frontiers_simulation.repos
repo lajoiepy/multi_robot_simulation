@@ -1,0 +1,5 @@
+repositories:
+  frontiers_exploration:
+    type: git
+    url: https://github.com/lajoiepy/simple_frontiers_exploration.git
+    version: main
