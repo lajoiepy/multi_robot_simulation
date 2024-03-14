@@ -32,7 +32,7 @@ mvsim_dir = get_package_share_directory("mvsim")
 sim_dir = get_package_share_directory("multi_robot_simulation")
 
 MVSIM_WORLD_FILE = os.path.join(sim_dir, 'config', 'worlds',
-                                'demo_turtlebot_world.world.xml')
+                                'demo_warehouse.world.xml')
 MVSIM_ROS2_PARAMS_FILE = os.path.join(sim_dir, 'config', 'mvsim',
                                       'mvsim_ros2_params.yaml')
 RVIZ2_FILE = os.path.join(sim_dir, 'config', 'rviz',
@@ -69,10 +69,6 @@ def generate_launch_description():
         default_value='false',
         description='Use simulation (Gazebo/MVsim) clock if true')
 
-    declare_autostart_cmd = DeclareLaunchArgument(
-        'autostart', default_value='true',
-        description='Automatically startup the nav2 stack')
-
     declare_use_composition_cmd = DeclareLaunchArgument(
         'use_composition', default_value='True',
         description='Whether to use composed bringup')
@@ -80,21 +76,6 @@ def generate_launch_description():
     declare_use_respawn_cmd = DeclareLaunchArgument(
         'use_respawn', default_value='False',
         description='Whether to respawn if a node crashes. Applied when composition is disabled.')
-
-    declare_use_slam = DeclareLaunchArgument(
-        'use_slam', default_value='False',
-        description='Use SLAM.')
-
-    bringup_cmd = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(launch_dir, 'mvsim_nav2_bringup.launch.py')),
-        launch_arguments={
-            'slam': use_slam,
-            'use_sim_time': use_sim_time,
-            'params_file': params_file,
-            'autostart': autostart,
-            'use_composition': use_composition,
-            'use_respawn': use_respawn}.items())
 
     # 'log_level': 'debug',
 
@@ -129,11 +110,7 @@ def generate_launch_description():
     # Declare the launch options
     ld.add_action(declare_params_file_cmd)
     ld.add_action(declare_use_sim_time_cmd)
-    ld.add_action(declare_autostart_cmd)
     ld.add_action(declare_use_composition_cmd)
     ld.add_action(declare_use_respawn_cmd)
-    ld.add_action(declare_use_slam)
-
-    ld.add_action(bringup_cmd)
 
     return ld
