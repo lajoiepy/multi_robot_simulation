@@ -69,11 +69,11 @@
         vert_resolution_factor="1.0"
       />
 
-      <!-- <include file="camera.sensor.xml" 
+      <include file="camera.sensor.xml" 
         sensor_x="0.2"  sensor_y="0" sensor_z="0.27"
         sensor_period_sec="0.10"
         sensor_name="cam1"
-        /> -->
+        />
     </if>
 
 </vehicle:class>
