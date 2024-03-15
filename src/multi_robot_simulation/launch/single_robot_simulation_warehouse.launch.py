@@ -36,7 +36,7 @@ MVSIM_WORLD_FILE = os.path.join(sim_dir, 'config', 'worlds',
 MVSIM_ROS2_PARAMS_FILE = os.path.join(sim_dir, 'config', 'mvsim',
                                       'mvsim_ros2_params.yaml')
 RVIZ2_FILE = os.path.join(sim_dir, 'config', 'rviz',
-                          'multi_robot.rviz')
+                          'single_robot.rviz')
 
 
 def generate_launch_description():

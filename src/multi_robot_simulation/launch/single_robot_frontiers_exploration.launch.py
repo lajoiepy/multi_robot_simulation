@@ -30,11 +30,15 @@ import os
 
 def generate_launch_description():
     # Nav2 launch
+    pkg_dir = get_package_share_directory("multi_robot_simulation")
+    nav2_config_file = os.path.join(
+        pkg_dir, 'config', 'nav2', 'warehouse.yaml')
     nav2 = IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 os.path.join(get_package_share_directory("multi_robot_simulation"),
                              "launch", "mvsim_nav2_bringup.launch.py")),
             launch_arguments={
+                "params_file": nav2_config_file,
             }.items(),
         )
 

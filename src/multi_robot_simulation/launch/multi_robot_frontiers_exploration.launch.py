@@ -19,7 +19,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription
+from launch.actions import TimerAction, DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription, PushLaunchConfigurations, PopLaunchConfigurations
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PythonExpression
@@ -31,19 +31,23 @@ import os
 
 def generate_launch_description():
 
-    num_robots = 1 # TODO: add parameter
+    num_robots = 5 # TODO: add parameter
+    delay_between_robots_launch = 6.0 # TODO: add parameter
 
     # Nav2 launch
+    pkg_dir = get_package_share_directory("multi_robot_simulation")
     nav2_launchs = []
     for i in range(num_robots):
+        nav2_config_file = os.path.join(
+            pkg_dir, 'config', 'nav2', 'default_multi', 'r' + str(i) + '.yaml')
         nav2_launchs.append(IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(
                     os.path.join(get_package_share_directory("multi_robot_simulation"),
                                 "launch", "mvsim_nav2_bringup.launch.py")),
                 launch_arguments={
-                    "use_sim_time": "false",
                     "use_namespace": "true",
                     "namespace": "r"+str(i),
+                    "params_file": nav2_config_file,
                 }.items(),
             ))
     
@@ -62,9 +66,16 @@ def generate_launch_description():
 
     # Create the launch description and populate
     ld = LaunchDescription()
+    delay_s = 0.0
     for nav2 in nav2_launchs:
-        ld.add_entity(nav2)
+        ld.add_entity(PushLaunchConfigurations())
+        ld.add_entity(TimerAction(period=delay_s, actions=[nav2]))
+        ld.add_entity(PopLaunchConfigurations())
+        delay_s += delay_between_robots_launch
     for frontiers_node in frontiers_nodes:
-        ld.add_entity(frontiers_node)
+        ld.add_entity(PushLaunchConfigurations())
+        ld.add_entity(TimerAction(period=delay_s, actions=[frontiers_node]))
+        ld.add_entity(PopLaunchConfigurations())
+        delay_s += delay_between_robots_launch + 1.0
 
     return ld
