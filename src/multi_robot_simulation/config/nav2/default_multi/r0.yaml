@@ -20,7 +20,7 @@ amcl:
     max_beams: 60
     max_particles: 2000
     min_particles: 500
-    odom_frame_id: "r0/odom"
+    odom_frame_id: "/r0/odom"
     pf_err: 0.05
     pf_z: 0.99
     recovery_alpha_fast: 0.0
@@ -37,7 +37,7 @@ amcl:
     z_max: 0.05
     z_rand: 0.5
     z_short: 0.05
-    scan_topic: /laser1
+    scan_topic: /r0/laser1
 
 bt_navigator:
   ros__parameters:
@@ -187,15 +187,15 @@ local_costmap:
       robot_base_frame: r0/base_link
       use_sim_time: False
       rolling_window: true
-      width: 5
-      height: 5
+      width: 3
+      height: 3
       resolution: 0.05
-      robot_radius: 1.0
+      robot_radius: 0.4
       plugins: ["voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.55
+        inflation_radius: 0.6
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
         enabled: True
@@ -212,9 +212,9 @@ local_costmap:
           clearing: True
           marking: True
           data_type: "LaserScan"
-          raytrace_max_range: 10.0
+          raytrace_max_range: 5.0
           raytrace_min_range: 0.0
-          obstacle_max_range: 9.0
+          obstacle_max_range: 4.5
           obstacle_min_range: 0.0
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
@@ -225,17 +225,17 @@ global_costmap:
   global_costmap:
     ros__parameters:
       map_topic: "/r0/global_costmap/costmap"   # JLBC
-      origin_x: -40.0
-      origin_y: -40.0
-      width: 80
-      height: 80
+      origin_x: -30.0
+      origin_y: -30.0
+      width: 60
+      height: 60
       update_frequency: 1.0
       publish_frequency: 1.0
       global_frame: map
       robot_base_frame: r0/base_link
       use_sim_time: False
-      robot_radius: 1.0
-      resolution: 0.05
+      robot_radius: 0.4
+      resolution: 0.2
       track_unknown_space: true
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
       obstacle_layer:
@@ -248,9 +248,9 @@ global_costmap:
           clearing: True
           marking: True
           data_type: "LaserScan"
-          raytrace_max_range: 10.0
+          raytrace_max_range: 5.0
           raytrace_min_range: 0.0
-          obstacle_max_range: 9.0
+          obstacle_max_range: 4.5
           obstacle_min_range: 0.0
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
@@ -258,7 +258,7 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.55
+        inflation_radius: 0.6
       always_send_full_costmap: True
 
 map_server:
