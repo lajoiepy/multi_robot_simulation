@@ -1,0 +1,21 @@
+FROM ros:humble-perception
+
+RUN apt-get update
+RUN apt-get install python3-pip python3-vcstool -y
+
+# Install dependecies
+COPY requirements.txt /tmp/
+RUN pip3 install --no-cache-dir -r /tmp/requirements.txt
+
+RUN apt-get install ros-$ROS_DISTRO-rviz2 -y
+RUN git clone https://github.com/lajoiepy/multi_robot_simulation.git tmp_ws
+RUN cd tmp_ws && vcs import src < swarmslam_simulation.repos
+RUN cd tmp_ws &&\
+    rosdep update &&\
+    rosdep install --from-paths src -y --ignore-src --rosdistro $ROS_DISTRO
+RUN rm -r tmp_ws
+
+RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+RUN echo "source /multi_robot_simulation/install/setup.bash" >> ~/.bashrc
+
+WORKDIR /multi_robot_simulation

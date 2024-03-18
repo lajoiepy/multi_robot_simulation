@@ -1,0 +1,17 @@
+repositories:
+  frontiers_exploration:
+    type: git
+    url: https://github.com/lajoiepy/simple_frontiers_exploration.git
+    version: main
+  cslam:
+    type: git
+    url: https://github.com/lajoiepy/cslam.git
+    version: main
+  cslam_interfaces:
+    type: git
+    url: https://github.com/lajoiepy/cslam_interfaces.git
+    version: main
+  cslam_experiments:
+    type: git
+    url: https://github.com/lajoiepy/cslam_experiments.git
+    version: main
