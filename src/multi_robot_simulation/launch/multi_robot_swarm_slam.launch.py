@@ -31,13 +31,13 @@ import os
 
 def generate_launch_description():
 
-    num_robots = 5 # TODO: add parameter
+    num_robots = 10 # TODO: add parameter
     delay_between_robots_launch = 10.0 # TODO: add parameter
 
     # Swarm-SLAM launch
     cslam_processes = []
     for i in range(num_robots):
-        cslam_config_file = 'jackal.yaml'
+        cslam_config_file = 'jackal_lidar.yaml'
         cslam_processes.append(IncludeLaunchDescription(
                 PythonLaunchDescriptionSource(
                     os.path.join(get_package_share_directory("multi_robot_simulation"),

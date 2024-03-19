@@ -19,7 +19,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch.actions import TimerAction, DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription, PushLaunchConfigurations, PopLaunchConfigurations
+from launch.actions import TimerAction, DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription, PushLaunchConfigurations, PopLaunchConfigurations, SetEnvironmentVariable
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PythonExpression
@@ -33,6 +33,17 @@ def generate_launch_description():
 
     num_robots = 5 # TODO: add parameter
     delay_between_robots_launch = 6.0 # TODO: add parameter
+
+    # Fix tf2 frames
+    tf2_static_nodes = []
+    for i in range(num_robots):
+        tf2_static_nodes.append(Node(
+            package='tf2_ros',
+            executable='static_transform_publisher',
+            name='static_transform_publisher',
+            output='screen',
+            arguments=['--frame-id', 'r' + str(i) + '/base_link', '--child-frame-id', 'r' + str(i) + '/laser1', '--x', '0.15', '--z', '0.25']
+        ))
 
     # Nav2 launch
     pkg_dir = get_package_share_directory("multi_robot_simulation")
@@ -67,6 +78,10 @@ def generate_launch_description():
     # Create the launch description and populate
     ld = LaunchDescription()
     delay_s = 0.0
+    # for tf2_static_node in tf2_static_nodes:
+    #     ld.add_entity(PushLaunchConfigurations())
+    #     ld.add_entity(tf2_static_node)
+    #     ld.add_entity(PopLaunchConfigurations())
     for nav2 in nav2_launchs:
         ld.add_entity(PushLaunchConfigurations())
         ld.add_entity(TimerAction(period=delay_s, actions=[nav2]))

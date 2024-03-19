@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  swarmslam_devel:
+    image: swarmslam_devel
+    container_name: swarmslam_devel
+    tty: true
+    stdin_open: true
+    volumes:
+      - type: bind
+        source: ./../../..
+        target: /multi_robot_simulation
+      - type: bind
+        source: /tmp/.X11-unix
+        target: /tmp/.X11-unix
+    environment:
+      - DISPLAY
+    networks:
+      - isolated_network
+
+networks:
+  isolated_network:
+    driver: bridge

@@ -6,7 +6,7 @@ amcl:
     alpha3: 0.2
     alpha4: 0.2
     alpha5: 0.2
-    base_frame_id: "r3/base_link"
+    base_frame_id: "r3/base_footprint"
     beam_skip_distance: 0.5
     beam_skip_error_threshold: 0.9
     beam_skip_threshold: 0.3
@@ -225,10 +225,10 @@ global_costmap:
   global_costmap:
     ros__parameters:
       map_topic: "/r3/global_costmap/costmap"   # JLBC
-      origin_x: -30.0
-      origin_y: -30.0
-      width: 60
-      height: 60
+      origin_x: -50.0
+      origin_y: -50.0
+      width: 100
+      height: 100
       update_frequency: 1.0
       publish_frequency: 1.0
       global_frame: map

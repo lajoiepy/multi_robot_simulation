@@ -74,7 +74,7 @@ def generate_launch_description():
                                   'config', 'swarmslam/'),
                               description=''),
         DeclareLaunchArgument('config_file',
-                              default_value='jackal.yaml',
+                              default_value='jackal_lidar.yaml',
                               description=''),
         DeclareLaunchArgument('config',
                               default_value=[

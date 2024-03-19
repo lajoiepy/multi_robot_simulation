@@ -19,7 +19,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription, SetEnvironmentVariable
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PythonExpression
@@ -32,9 +32,9 @@ mvsim_dir = get_package_share_directory("mvsim")
 sim_dir = get_package_share_directory("multi_robot_simulation")
 
 MVSIM_WORLD_FILE = os.path.join(sim_dir, 'config', 'worlds',
-                                'demo_multi_robot_warehouse.world.xml')
+                                'demo_multi_robot_large_warehouse.world.xml')
 MVSIM_ROS2_PARAMS_FILE = os.path.join(sim_dir, 'config', 'mvsim',
-                                      'mvsim_experiments.yaml')
+                                      'mvsim_large_experiments.yaml')
 RVIZ2_FILE = os.path.join(sim_dir, 'config', 'rviz',
                           'multi_robot.rviz')
 

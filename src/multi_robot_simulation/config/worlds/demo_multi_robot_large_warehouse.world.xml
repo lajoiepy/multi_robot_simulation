@@ -38,8 +38,8 @@
 	<!-- ground -->
 	<element class="horizontal_plane">
 		<cull_face>BACK</cull_face>
-		<x_min>-15</x_min> <y_min>-13</y_min>
-		<x_max> 20</x_max> <y_max> 13</y_max>
+		<x_min>-50</x_min> <y_min>-50</y_min>
+		<x_max> 50</x_max> <y_max> 50</y_max>
 		<z>0.0</z>
 		<texture>https://mrpt.github.io/mvsim-models/textures-cgbookcase/concrete-ground-1.jpg</texture>
 		<texture_size_x>2.0</texture_size_x>
@@ -49,8 +49,8 @@
 	<!-- ceiling -->
 	<element class="horizontal_plane">
 		<cull_face>FRONT</cull_face>
-		<x_min>-15</x_min> <y_min>-13</y_min>
-		<x_max> 20</x_max> <y_max> 13</y_max>
+		<x_min>-50</x_min> <y_min>-50</y_min>
+		<x_max> 50</x_max> <y_max> 50</y_max>
 		<z>$f{CEILING_HEIGHT}</z>
 		<texture>https://mrpt.github.io/mvsim-models/textures-cgbookcase/BathroomTiles03_1K_BaseColor.png</texture>
 		<texture_size_x>3.0</texture_size_x>
@@ -60,8 +60,8 @@
 	<!-- perimeter walls: -->
 	<element class="vertical_plane">
 		<cull_face>FRONT</cull_face>
-		<x0>-15</x0> <y0>13</y0>
-		<x1>-15</x1> <y1>-13</y1>
+		<x0>-50</x0> <y0>50</y0>
+		<x1>-50</x1> <y1>-50</y1>
 		<z>0.0</z> <height>$f{CEILING_HEIGHT}</height>
 		<texture>https://mrpt.github.io/mvsim-models/textures-cgbookcase/wall-bricks-01.png</texture>
 		<texture_size_x>3.0</texture_size_x>
@@ -69,8 +69,8 @@
 	</element>
 	<element class="vertical_plane">
 		<cull_face>FRONT</cull_face>
-		<x0> 20</x0> <y0>13</y0>
-		<x1>-15</x1> <y1>13</y1>
+		<x0> 50</x0> <y0>50</y0>
+		<x1>-50</x1> <y1>50</y1>
 		<z>0.0</z> <height>$f{CEILING_HEIGHT}</height>
 		<texture>https://mrpt.github.io/mvsim-models/textures-cgbookcase/wall-bricks-01.png</texture>
 		<texture_size_x>3.0</texture_size_x>
@@ -78,8 +78,8 @@
 	</element>
 	<element class="vertical_plane">
 		<cull_face>FRONT</cull_face>
-		<x0> 20</x0> <y0>-13</y0>
-		<x1> 20</x1> <y1>13</y1>
+		<x0> 50</x0> <y0>-50</y0>
+		<x1> 50</x1> <y1>50</y1>
 		<z>0.0</z> <height>$f{CEILING_HEIGHT}</height>
 		<texture>https://mrpt.github.io/mvsim-models/textures-cgbookcase/wall-bricks-01.png</texture>
 		<texture_size_x>3.0</texture_size_x>
@@ -87,8 +87,8 @@
 	</element>
 	<element class="vertical_plane">
 		<cull_face>FRONT</cull_face>
-		<x0>-15</x0> <y0>-13</y0>
-		<x1> 20</x1> <y1>-13</y1>
+		<x0>-50</x0> <y0>-50</y0>
+		<x1> 50</x1> <y1>-50</y1>
 		<z>0.0</z> <height>$f{CEILING_HEIGHT}</height>
 		<texture>https://mrpt.github.io/mvsim-models/textures-cgbookcase/wall-bricks-01.png</texture>
 		<texture_size_x>3.0</texture_size_x>
@@ -111,19 +111,39 @@
 	</vehicle>
 
 	<vehicle name="r1" class="jackal">
-		<init_pose>8 0 0</init_pose> 
+		<init_pose>35 0 0</init_pose> 
 	</vehicle>
 
 	<vehicle name="r2" class="jackal">
-		<init_pose>0 12 0</init_pose>  
+		<init_pose>0 30 0</init_pose>  
 	</vehicle>
 
 	<vehicle name="r3" class="jackal">
-		<init_pose>-10 0 0</init_pose> 
+		<init_pose>-30 0 0</init_pose> 
 	</vehicle>
 
 	<vehicle name="r4" class="jackal">
-		<init_pose>0 -12 0</init_pose> 
+		<init_pose>4 -35 0</init_pose> 
+	</vehicle>
+
+	<vehicle name="r5" class="jackal">
+		<init_pose>40 -33 0</init_pose> 
+	</vehicle>
+
+	<vehicle name="r6" class="jackal">
+		<init_pose>37 45 0</init_pose> 
+	</vehicle>
+
+	<vehicle name="r7" class="jackal">
+		<init_pose>-38 -45 0</init_pose> 
+	</vehicle>
+
+	<vehicle name="r8" class="jackal">
+		<init_pose>-30 40 0</init_pose> 
+	</vehicle>
+
+	<vehicle name="r9" class="jackal">
+		<init_pose>20 -10 0</init_pose> 
 	</vehicle>
 
 	<!-- ======================================
@@ -202,7 +222,6 @@
 		</visual>
 	</block:class>
 
-
 	<!-- ======================================
 	      Object instances
 	     ====================================== -->
@@ -213,18 +232,101 @@
 	     SE(3) <init_pose3d>x y z yaw(deg) pitch(deg) roll(deg)</init_pose3d> 
 	-->
 
-	<block class="shelf"> <init_pose>0 5 0</init_pose> </block>
-	<block class="shelf"> <init_pose>0 9 180</init_pose> </block>
+	<block class="shelf"> <init_pose>-3 5 0</init_pose> </block>
+	<block class="shelf"> <init_pose>5 11 180</init_pose> </block>
 
-	<block class="shelf"> <init_pose>0 -5 0</init_pose> </block>
-	<block class="shelf"> <init_pose>0 -9 180</init_pose> </block>
+	<block class="shelf"> <init_pose>-20 -22 0</init_pose> </block>
+	<block class="shelf"> <init_pose>-12 -22 0</init_pose> </block>
 
-	<block class="shelf"> <init_pose>12 0 90</init_pose> </block>
-	<block class="shelf"> <init_pose>17 0 -90</init_pose> </block>
+	<block class="shelf"> <init_pose>-25 -32 0</init_pose> </block>
+	<block class="shelf"> <init_pose>-17 -31 0</init_pose> </block>
+	<block class="shelf"> <init_pose>-9 -33 0</init_pose> </block>
+
+	<block class="shelf"> <init_pose>-2 -5 0</init_pose> </block>
+	<block class="shelf"> <init_pose>7 -11 180</init_pose> </block>
+
+	<block class="shelf"> <init_pose>12 -3 90</init_pose> </block>
+	<block class="shelf"> <init_pose>20 4 -90</init_pose> </block>
+
+	<block class="shelf"> <init_pose>-18 -7 90</init_pose> </block>
+	<block class="shelf"> <init_pose>-24 8 -90</init_pose> </block>
+
+	<block class="shelf"> <init_pose>-40 -30 90</init_pose> </block>
+	<block class="shelf"> <init_pose>-34 25 -90</init_pose> </block>
+
+	<block class="shelf"> <init_pose>13 -4 90</init_pose> </block>
+	<block class="shelf"> <init_pose>22 16 -90</init_pose> </block>
+
+	<block class="shelf"> <init_pose>32 -6 180</init_pose> </block>
+	<block class="shelf"> <init_pose>41 -12 0</init_pose> </block>
+
+	<block class="shelf"> <init_pose>41 30 -45</init_pose> </block>
+	<block class="shelf"> <init_pose>28 28 -45</init_pose> </block>
+	<block class="shelf"> <init_pose>35 -30 12</init_pose> </block>
+	<block class="shelf"> <init_pose>28 -22 -40</init_pose> </block>
+
+	<block class="shelf"> <init_pose>-10 30 15</init_pose> </block>
+	<block class="shelf"> <init_pose>45 5 -80</init_pose> </block>
+	<block class="shelf"> <init_pose>20 -38 70</init_pose> </block>
+<!-- 	
+	<block class="stairs"> <init_pose> -35  -30 60</init_pose> </block>
+
+
+
+	<block class="tote"> <init_pose>-20 -28 -60</init_pose> </block>
+	<block class="tote"> <init_pose> -30 -22 35</init_pose> </block>
+
+	<block class="pallet"> <init_pose>-9.7 -15 85</init_pose> </block>
+	<block class="pallet"> <init_pose>-12.4 -13 91</init_pose> </block>
 
 	<block class="pallet_jack"> <init_pose>3 3 0</init_pose> </block>
 	<block class="pallet_jack"> <init_pose>-12.5 11.5 -10</init_pose> </block>
 	<block class="pallet_jack"> <init_pose>-11 12 80</init_pose> </block>
+
+	<block class="pallet_jack"> <init_pose>15 -38 20</init_pose> </block>
+	<block class="pallet_jack"> <init_pose>8 -42 78</init_pose> </block>
+
+	<block class="pallet_jack"> <init_pose>12 30 56</init_pose> </block>
+	<block class="pallet_jack"> <init_pose>6 31 78</init_pose> </block>
+
+	<block class="pallet_jack"> <init_pose>30 3 64</init_pose> </block>
+	<block class="pallet_jack"> <init_pose>30 5 -86</init_pose> </block>
+
+	<block class="pallet_jack"> <init_pose>4 -26 10</init_pose> </block>
+	<block class="pallet_jack"> <init_pose>7 -30 20</init_pose> </block> -->
+
+	<block:class name="square_obstacle">
+		<mass>20</mass>
+		<color>#0080ff</color>
+		<zmax>5.0</zmax>
+		<ground_friction>0.3</ground_friction>
+		<shape>
+			<pt>-1.0 -0.6</pt>
+			<pt>-1.0  0.6</pt>
+			<pt> 1.0  0.5</pt>
+			<pt> 1.0 -0.5</pt>
+		</shape>
+	</block:class>
+
+	<block class="square_obstacle"> <init_pose>10 -39 -10</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>10 -42 -56</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>-10 11 70</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>-20 -45 48</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>-18 -46 89</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>-38 -43 20</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>-35 -44 -60</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>-37 -10 12</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>-39 -8 -35</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>-37 -10 12</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>-33 -8 -35</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>-40 42 17</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>-42 43 -80</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>40 44 75</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>42 43 -90</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>-18 47 75</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>-17 45 -90</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>18 40 75</init_pose> </block>
+	<block class="square_obstacle"> <init_pose>19 41 -90</init_pose> </block>
 
 	<!-- <block class="pallet_jack"> 
 		<init_pose>0 0 0</init_pose>
@@ -239,17 +341,31 @@
 		</animation>
 	</block> -->
 
+<!-- 
+	<block class="stairs"> <init_pose>-43 -5 -45</init_pose> </block>
+	<block class="stairs"> <init_pose> 35  5 45</init_pose> </block>
+
+	<block class="stairs"> <init_pose>30 -20 -90</init_pose> </block>
+	<block class="stairs"> <init_pose> -40  10 90</init_pose> </block>
+	<block class="stairs"> <init_pose>-25 5 -90</init_pose> </block>
+	<block class="stairs"> <init_pose> 25  -35 90</init_pose> </block>
+	<block class="stairs"> <init_pose>-42 -31 -90</init_pose> </block>
+	<block class="stairs"> <init_pose> 42  -40 90</init_pose> </block>
 
 	<block class="stairs"> <init_pose>-12 -11.5 -90</init_pose> </block>
 	<block class="stairs"> <init_pose> 15  11.5 90</init_pose> </block>
 
 	<block class="tote"> <init_pose>-2 3 -40</init_pose> </block>
 	<block class="tote"> <init_pose> 2 3 10</init_pose> </block>
+	<block class="tote"> <init_pose> 20 30 20</init_pose> </block>
+	<block class="tote"> <init_pose> 40 -35 20</init_pose> </block>
 
 	<block class="pallet"> <init_pose>10.4 -1.1 85</init_pose> </block>
 	<block class="pallet"> <init_pose>10.3 -2.3 91</init_pose> </block>
 	<block class="pallet"> <init_pose>10.5 1.15 80</init_pose> </block>
 	<block class="pallet"> <init_pose>10.2 0.1 86</init_pose> </block>
+	<block class="pallet"> <init_pose>-40 25 24</init_pose> </block>
+	<block class="pallet"> <init_pose>-26 15 53</init_pose> </block>
 
 	<for var="iX" from="0" to="2">
 		<for var="iY" from="0" to="1">
@@ -262,9 +378,14 @@
 
 	<block class="chair_x3"> <init_pose>-14.5 1 90</init_pose> </block>
 	<block class="chair_x3"> <init_pose>-14.5 3 90</init_pose> </block>
+	<block class="chair_x3"> <init_pose>20 15 45</init_pose> </block>
+	<block class="chair_x3"> <init_pose>-24.5 -10 110</init_pose> </block>
 
 	<block class="extinguisher"> <init_pose3d>-14.8 12 1.1 90 0 0</init_pose3d> </block>
 	<block class="extinguisher"> <init_pose3d> 6.5 12.9 1.1 0 0 0</init_pose3d> </block>
 	<block class="extinguisher"> <init_pose3d> 2.5 -12.9 1.1 180 0 0</init_pose3d> </block>
+
+	<block class="stairs"> <init_pose>-1 27 -90</init_pose> </block>
+	<block class="stairs"> <init_pose> 5  34 90</init_pose> </block> -->
 
 </mvsim_world>
